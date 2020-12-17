@@ -15,7 +15,7 @@ fn main() {
     }
 
     // ...but not for following expressions
-    if x == false {
+    if !x {
         println!("Nay");
     }
 
