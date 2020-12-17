@@ -9,8 +9,7 @@ fn main() {
     let x = true;
 
     // This allows the `bool_comparison` lint just for this expression...
-    #[allow(clippy::bool_comparison)]
-    if x == true {
+    if x {
         println!("Yay");
     }
 
@@ -30,7 +29,7 @@ fn float_comparison(x: f32) {
         println!("So close!");
     }
 
-    if f32::NAN == x {
+    if x.is_nan() {
         println!("We got NAN!");
     }
 }
@@ -39,9 +38,7 @@ fn manual_memcpy() {
     let src = vec![42; 28];
     let mut dst = vec![0; 28 + 64];
 
-    for i in 0..src.len() {
-        dst[i + 64] = src[i];
-    }
+    dst[64..(src.len() + 64)].clone_from_slice(&src[..]);
 
     println!("{:?}", dst);
 }
